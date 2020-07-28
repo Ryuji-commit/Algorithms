@@ -13,7 +13,7 @@ def insert(a, pos, value, left_index):
 
 
 def insertion_sort(a, left_index, right_index):
-    for pos in range(left_index, right_index + 1):
+    for pos in range(left_index + 1, right_index + 1):
         insert(a, pos, a[pos], left_index)
 
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     ListLength = 500
     A = [random.randint(0, 500) for _ in range(ListLength)]
     print('List length : {}'.format(ListLength))
-    print('before Insertion sort : {}'.format(A))
+    print('before Quick sort : {}'.format(A))
     start_time = time.time()
     quick_sort(A, 0, ListLength-1)
     elapsed_time = time.time() - start_time
