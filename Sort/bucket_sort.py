@@ -1,5 +1,4 @@
 import random
-import time
 
 
 def insert(bucket, pos, value):
@@ -15,19 +14,19 @@ def insertion_sort(bucket):
         insert(bucket, pos, bucket[pos])
 
 
-def extract(buckets, a):
+def extract(buckets, unsorted):
     counter = 0
     for bucket in buckets:
         if len(bucket) == 0:
             continue
 
         if len(bucket) == 1:
-            a[counter] = bucket[0]
+            unsorted[counter] = bucket[0]
             counter += 1
         else:
             insertion_sort(bucket)
             for i in bucket:
-                a[counter] = i
+                unsorted[counter] = i
                 counter += 1
 
 
@@ -35,20 +34,16 @@ def bucket_hash(value):
     return value//3
 
 
-def bucket_sort(a):
-    buckets = [[] for _ in range(len(a))]
-    for i in a:
+def bucket_sort(unsorted_list):
+    bucket_size = (max(unsorted_list)//3) + 1
+    buckets = [[] for _ in range(bucket_size)]
+    for i in unsorted_list:
         buckets[bucket_hash(i)].append(i)
-    extract(buckets, a)
+    extract(buckets, unsorted_list)
 
 
 if __name__ == "__main__":
-    ListLength = 500
-    A = [random.randint(0, 500) for _ in range(ListLength)]
-    print('List length : {}'.format(ListLength))
-    print('before Bucket sort : {}'.format(A))
-    start_time = time.time()
-    bucket_sort(A)
-    elapsed_time = time.time() - start_time
-    print('sorted : {}'.format(A))
-    print('elapsed time : {}sec'.format(elapsed_time))
+    list_length = 100
+    my_list = [random.randint(0, 100) for _ in range(list_length)]
+    bucket_sort(my_list)
+    print(my_list)
