@@ -33,9 +33,12 @@ def partition(unsorted, left_index, right_index, pivot_index):
     return counter
 
 
-def quick_sort(unsorted_list, left_index, right_index):
+def quick_sort(unsorted_list, left_index=0, right_index=0):
+    if right_index == 0:
+        right_index = len(unsorted_list) - 1
+
     if left_index >= right_index:
-        return
+        return unsorted_list
     pivot_index = select_pivot_index(left_index, right_index)
     pivot_index = partition(unsorted_list, left_index, right_index, pivot_index)
 
@@ -52,7 +55,7 @@ def quick_sort(unsorted_list, left_index, right_index):
 if __name__ == "__main__":
     list_length = 100
     my_list = [random.randint(0, 100) for _ in range(list_length)]
-    quick_sort(my_list, 0, list_length-1)
+    quick_sort(my_list)
     print(my_list)
 
 
