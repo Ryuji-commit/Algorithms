@@ -38,7 +38,7 @@ def quick_sort(unsorted_list, left_index=0, right_index=0):
         right_index = len(unsorted_list) - 1
 
     if left_index >= right_index:
-        return unsorted_list
+        return
     pivot_index = select_pivot_index(left_index, right_index)
     pivot_index = partition(unsorted_list, left_index, right_index, pivot_index)
 
